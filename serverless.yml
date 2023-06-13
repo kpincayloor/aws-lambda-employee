@@ -1,0 +1,59 @@
+service: aws-lambda-employee-node
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-west-2:374019712762:table/employees 
+
+functions:
+  getEmployees:
+    handler: src/app/employees/getEmployees.getEmployees
+    events:
+      - httpApi:
+          path: /employees
+          method: get
+  addEmployee:
+    handler: src/app/employees/addEmployee.addEmployee
+    events:
+      - httpApi:
+          path: /employees
+          method: post
+  findEmployeeId:
+    handler: src/app/employees/findEmployeeId.findEmployeeId
+    events:
+      - httpApi:
+          path: /employees/{id}
+          method: get
+  updateEmployee:
+    handler: src/app/employees/updateEmployee.updateEmployee
+    events:
+      - httpApi:
+          path: /employees/{id}
+          method: put
+  deleteEmployee:
+    handler: src/app/employees/deleteEmployee.deleteEmployee
+    events:
+      - httpApi:
+          path: /employees/{id}
+          method: delete
+
+resources:
+  Resources:
+    employees:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: employees
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
