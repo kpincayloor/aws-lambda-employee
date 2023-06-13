@@ -9,6 +9,12 @@ authorLink: 'https://github.com/serverless'
 authorName: 'Serverless, inc.'
 authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 -->
+# Endpoints AWS LAMBDA:
+GET - https://fy4w6diqgh.execute-api.us-west-2.amazonaws.com/employees
+POST - https://fy4w6diqgh.execute-api.us-west-2.amazonaws.com/employees
+GET - https://fy4w6diqgh.execute-api.us-west-2.amazonaws.com/employees/{id}
+PUT - https://fy4w6diqgh.execute-api.us-west-2.amazonaws.com/employees/{id}
+DELETE - https://fy4w6diqgh.execute-api.us-west-2.amazonaws.com/employees/{id}
 
 # Serverless Framework Node HTTP API on AWS
 
